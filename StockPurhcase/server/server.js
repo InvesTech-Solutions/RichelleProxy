@@ -25,4 +25,4 @@ app.get('/:stockNameID', (req, res) => {
   });
 });
 
-app.listen(3001, () => console.log('listening on port 3000!'))
+app.listen(3009, () => console.log('listening on port 3009!'))
