@@ -3,14 +3,16 @@ var faker = require('faker');
 
 
 
-connection.connect(function(err) {
-  if (err) {
-    console.error('error connecting: ' + err.stack);
-    return;
-  }
-	console.log('connected as id ' + connection.threadId + ' @ '+ Date());
-});
+// connection.connect(function(err) {
+//   if (err) {
+//     console.error('error connecting: ' + err.stack);
+//     return;
+//   }
+// 	console.log('connected as id ' + connection.threadId + ' @ '+ Date());
+// });
 
+
+connection.connect();
 
 var getOneStock = (stockid, callback) => {
 	connection.query('SELECT * from stockprice where id = ?',[stockid], function (error, results, fields) {

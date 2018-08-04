@@ -995,13 +995,13 @@ var testData = [{
   current_price: 909.88,
   prev_price: 538.5 }];
 
-var App = function (_React$Component) {
-  _inherits(App, _React$Component);
+var StockPurchase = function (_React$Component) {
+  _inherits(StockPurchase, _React$Component);
 
-  function App(props) {
-    _classCallCheck(this, App);
+  function StockPurchase(props) {
+    _classCallCheck(this, StockPurchase);
 
-    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (StockPurchase.__proto__ || Object.getPrototypeOf(StockPurchase)).call(this, props));
 
     _this.state = {
       stockData: testData,
@@ -1012,7 +1012,7 @@ var App = function (_React$Component) {
     return _this;
   }
 
-  _createClass(App, [{
+  _createClass(StockPurchase, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.GetOneStock();
@@ -1022,13 +1022,17 @@ var App = function (_React$Component) {
     value: function GetOneStock() {
       var _this2 = this;
 
+      var id = this.props.id;
       var success = function success(DBdata) {
         _this2.setState({ stockData: DBdata });
       };
       _jquery2.default.ajax({
-        url: 'http://127.0.0.1:3000/3', //default stockname id 3
+        url: 'http://127.0.0.1:3009/' + id + '/info',
         success: success,
-        dataType: 'json'
+        error: function error(DATA) {
+          console.log('failed', id);
+          console.log(DATA);
+        }
       });
     }
   }, {
@@ -1099,10 +1103,10 @@ var App = function (_React$Component) {
     }
   }]);
 
-  return App;
+  return StockPurchase;
 }(_react2.default.Component);
 
-_reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById('StockPurchase'));
+window.StockPurchase = StockPurchase;
 
 /***/ }),
 /* 14 */

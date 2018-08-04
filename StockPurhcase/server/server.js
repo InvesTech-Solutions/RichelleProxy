@@ -4,7 +4,8 @@ const db = require('../db/model.js')
 var bodyParser = require('body-parser')
 
 
-app.use(express.static(__dirname + '/../client/dist'));
+app.use('/:stockNameID', express.static(__dirname + '/../client/dist'));
+
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
@@ -14,8 +15,13 @@ app.use(bodyParser.json())
   console.log(req.method + ' @ '+ Date())
   next()
 })
+app.use((req, res, next) => {
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+	next();
+});
 
-app.get('/:stockNameID', (req, res) => {
+app.get('/:stockNameID/info', (req, res) => {
   db.getOneStock(req.params.stockNameID, (err, data) => {
   	if(err){
   		res.sendStatus(404);

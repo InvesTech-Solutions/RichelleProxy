@@ -18,12 +18,12 @@ var testData= [{
 
 
 
-class App extends React.Component {
+class StockPurchase extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
     	stockData: testData,
-    	owe: 0
+    	owe: 0,
     }
     this.HandleSumChange = this.HandleSumChange.bind(this);
     this.GetOneStock = this.GetOneStock.bind(this);
@@ -34,13 +34,17 @@ class App extends React.Component {
   }
 
   GetOneStock(){
+    let id = this.props.id
     var success = (DBdata) => {
       this.setState({stockData: DBdata});
     }
     $.ajax({
-      url: 'http://127.0.0.1:3000/3', //default stockname id 3
+      url: `http://127.0.0.1:3009/${id}/info`, 
       success:success,
-      dataType: 'json'
+      error: (DATA) => {
+        console.log('failed', id);
+        console.log(DATA);
+      }
     });
 
   }
@@ -88,10 +92,6 @@ class App extends React.Component {
   }
 }
 
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('StockPurchase')
-);
+window.StockPurchase = StockPurchase;
 
 

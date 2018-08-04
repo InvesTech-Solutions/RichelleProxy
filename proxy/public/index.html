@@ -2,41 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="http://localhost:3001/grunt/style.min.css">
+    <link rel="stylesheet" href="http://localhost:3009/dist/grunt/style.min.css">
     <title>FEC Demo</title>
   </head>
   <body>
     <div id="StockPurchase"></div>
-    <!-- <div id="app"></div> -->
     <div id="Related"></div>
     <div id="Reviews"></div>
-    <script src="/lib/react.development.js"></script>
-    <script src="/lib/react-dom.development.js"></script>
-    <script src="http://localhost:3001/grunt/bundle.min.js"></script>
-<!--     <script src="http://localhost:3002/app.js"></script>
-    <script src="http://localhost:3003/app.js"></script>
-    <script src="http://localhost:3004/app.js"></script> -->
-    <!-- see: https://reactjs.org/docs/react-without-jsx.html -->
-    <script>
-    </script>
-  </body>
-</html>
-
-
-
-<!--       ReactDOM.render(
-        React.createElement(Info),
+    <script src="lib/react.development.js"></script>
+    <script src="lib/react-dom.development.js"></script>
+    <script src="http://localhost:3009/dist/grunt/bundle.min.js"></script>
+  <script>
+        let id = location.pathname.split('/')[1]
+      ReactDOM.render(
+        React.createElement(StockPurchase, {id:id}),
         document.getElementById('StockPurchase')
       );
-      ReactDOM.render(
-        React.createElement(CountDown),
-        document.getElementById('CountDown')
-      );
-      ReactDOM.render(
-        React.createElement(Related),
-        document.getElementById('Related')
-      );
-      ReactDOM.render(
-        React.createElement(Reviews),
-        document.getElementById('Reviews')
-      ); -->
+  </script>
+  </body>
+</html>
